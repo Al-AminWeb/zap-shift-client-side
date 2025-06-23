@@ -1,9 +1,10 @@
 import React from 'react';
+import Banner from "./banner/Banner.jsx";
 
 const Home = () => {
     return (
         <div>
-            this is home page
+           <Banner/>
         </div>
     );
 };

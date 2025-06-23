@@ -8,6 +8,8 @@ import {router} from "./router/router.jsx";
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-        <RouterProvider router={router}/>
+       <div className='urbanist max-w-7xl mx-auto'>
+           <RouterProvider router={router}/>
+       </div>
     </StrictMode>,
 )
