@@ -6,10 +6,18 @@ import {
 } from "react-router";
 import {router} from "./router/router.jsx";
 
+import 'aos/dist/aos.css';
+import AOS from 'aos';
+
+AOS.init()
+
 createRoot(document.getElementById('root')).render(
     <StrictMode>
-       <div className='urbanist max-w-7xl mx-auto'>
-           <RouterProvider router={router}/>
-       </div>
+        <div className='bg-[#ebeced]'>
+            <div className='urbanist max-w-7xl mx-auto '>
+                <RouterProvider router={router}/>
+            </div>
+        </div>
+
     </StrictMode>,
 )

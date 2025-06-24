@@ -7,7 +7,7 @@ import bannerImg3 from '../../../assets/banner/banner3.png'
 
 const Banner = () => {
     return (
-        <div>
+        <div className='py-[60px]'>
             <Carousel showThumbs={false}>
                 <div>
                     <img src={bannerImg1} alt='baner1'/>
