@@ -1,12 +1,12 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-// import useAuth from '../../../hooks/useAuth';
 import { Link } from 'react-router';
-// import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from "../../../hooks/useAuth.jsx";
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    // const { createUser } = useAuth();
+    const { createUser } = useAuth();
 
     const onSubmit = data => {
         console.log(data);
@@ -49,7 +49,7 @@ const Register = () => {
                     </fieldset>
                     <p><small>Already have an account? <Link className="btn btn-link" to="/login">Login</Link></small></p>
                 </form>
-                {/*<SocialLogin></SocialLogin>*/}
+                <SocialLogin></SocialLogin>
             </div>
         </div>
     );
