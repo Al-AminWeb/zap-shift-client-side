@@ -8,6 +8,7 @@ import {router} from "./router/router.jsx";
 
 import 'aos/dist/aos.css';
 import AOS from 'aos';
+import {AuthContext} from "./context/AuthContext/AuthContext.jsx";
 
 AOS.init()
 
@@ -15,7 +16,9 @@ createRoot(document.getElementById('root')).render(
     <StrictMode>
         <div className='bg-[#ebeced]'>
             <div className='urbanist max-w-7xl mx-auto '>
-                <RouterProvider router={router}/>
+               <AuthContext>
+                   <RouterProvider router={router}/>
+               </AuthContext>
             </div>
         </div>
 
