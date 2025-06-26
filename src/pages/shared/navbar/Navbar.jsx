@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from "react-router";
+import {Link, NavLink} from "react-router";
 import ProFast from "../profast/ProFast.jsx";
 
 const Navbar = () => {
@@ -30,7 +30,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                <Link to='/login' className='btn btn-primary text-white'>Login</Link>
             </div>
         </div>
     );
