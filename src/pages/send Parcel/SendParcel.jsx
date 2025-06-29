@@ -129,7 +129,6 @@ const ParcelForm = () => {
                     createdAtISO: now.toISOString(),
                     createdAtUnix: now.getTime()
                 }
-                console.log('📦 Saved Parcel:', parcelData)
                 axiosSecure.post('/parcels',parcelData)
                     .then(res => {
                         console.log(res.data);

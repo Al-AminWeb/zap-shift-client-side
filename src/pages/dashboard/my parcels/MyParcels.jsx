@@ -6,10 +6,12 @@ import { format } from 'date-fns';
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { useQueryClient } from '@tanstack/react-query';
+import {useNavigate} from "react-router";
 
 const MyParcels = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
+    const navigate = useNavigate();
 
     const { data: parcels = [] } = useQuery({
         queryKey: ['my-parcels', user.email],
@@ -43,9 +45,9 @@ const MyParcels = () => {
         // Optional: Open modal or navigate to details page
     };
 
-    const onPay = (parcel) => {
-        console.log('Pay:', parcel);
-        // Optional: Trigger payment process
+    const onPay = (id) => {
+        console.log('Pay:', id);
+       navigate(`/dashboard/payment/${id}`);
     };
     const queryClient = useQueryClient();
     const onDelete = (id) => {
@@ -108,7 +110,7 @@ const MyParcels = () => {
                             <td className="flex gap-2">
                                 <button onClick={() => onView(parcel)} className="btn btn-sm btn-info">View</button>
                                 {!isPaid && (
-                                    <button onClick={() => onPay(parcel)} className="btn btn-sm btn-success">Pay</button>
+                                    <button onClick={() => onPay(parcel._id)} className="btn btn-sm btn-success">Pay</button>
                                 )}
                                 <button onClick={() => onDelete(parcel._id)} className="btn btn-sm btn-error">Delete</button>
                             </td>

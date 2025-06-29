@@ -11,6 +11,7 @@ import PrivateRoute from "../routes/PrivateRoute.jsx";
 import SendParcel from "../pages/send Parcel/SendParcel.jsx";
 import DashBoardLayout from "../layouts/DashBoardLayout.jsx";
 import MyParcels from "../pages/dashboard/my parcels/MyParcels.jsx";
+import Payment from "../pages/dashboard/payment/Payment.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
             {
                 path:'myParcels',
                 Component:MyParcels
+            },
+            {
+              path: 'payment/:id',
+              Component:Payment
             }
         ]
     }

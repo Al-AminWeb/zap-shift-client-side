@@ -1,7 +1,6 @@
 import React from "react";
 import reviewQuote from "../../../assets/reviewQuote.png";
 const ReviewCard = ({ review }) => {
-    console.log(review);
     return (
         <div className="card  px-8  shadow-sm rounded-4xl">
             <div className="card-body">
