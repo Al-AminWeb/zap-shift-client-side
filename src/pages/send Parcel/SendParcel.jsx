@@ -126,6 +126,7 @@ const ParcelForm = () => {
                 const parcelData = {
                     ...data,
                     cost: total,
+                    paymentStatus: 'Unpaid',
                     createdBy: user?.email || 'anonymous',
                     createdAtISO: now.toISOString(),
                     createdAtUnix: now.getTime()

@@ -93,7 +93,7 @@ const MyParcels = () => {
                 {parcels.map((parcel, idx) => {
                     const cost = getCost(parcel);
                     const createdAt = format(new Date(parcel.createdAtISO), 'PPPp');
-                    const isPaid = parcel.isPaid === true;
+                    const isPaid = parcel.paymentStatus === 'Paid';
 
                     return (
                         <tr key={parcel._id}>
