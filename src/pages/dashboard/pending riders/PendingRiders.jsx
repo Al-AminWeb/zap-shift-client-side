@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import useAxiosSecure from "../../../hooks/useAxios.jsx";
+import Loading from "../../shared/Loading/Loading.jsx";
 
 const PendingRiders = () => {
     const axiosSecure = useAxiosSecure();
@@ -32,7 +33,7 @@ const PendingRiders = () => {
         onError: () => toast.error('Action failed')
     });
 
-    if (isLoading) return <p className="text-center py-10">Loading…</p>;
+    if (isLoading) return <Loading/>;
 
     return (
         <div className="overflow-x-auto shadow-lg rounded-xl">
