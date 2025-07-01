@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link, NavLink} from "react-router";
+import { Link, NavLink } from "react-router";
 import ProFast from "../profast/ProFast.jsx";
 import useAuth from "../../../hooks/useAuth.jsx";
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
 
-    const {user, logOut} = useAuth();
     const handleLogout = () => {
         logOut()
             .then(result => {
@@ -23,12 +23,11 @@ const Navbar = () => {
         {
             user && <>
                 <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
-
             </>
         }
         <li><NavLink to='/sendparcel'>Send Parcel</NavLink></li>
-
-    </>
+        <li><NavLink to='/beARider'>Be A Rider</NavLink></li>
+    </>;
 
     return (
         <div className="navbar bg-base-100 shadow-sm">
@@ -47,7 +46,8 @@ const Navbar = () => {
                         {navItems}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl"><ProFast/></a>
+                {/* ProFast handles its own internal link now */}
+                <ProFast />
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">

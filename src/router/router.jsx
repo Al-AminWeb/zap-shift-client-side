@@ -14,6 +14,7 @@ import MyParcels from "../pages/dashboard/my parcels/MyParcels.jsx";
 import Payment from "../pages/dashboard/payment/Payment.jsx";
 import PaymentHistory from "../pages/dashboard/payment history/PaymentHistory.jsx";
 import TrackParcel from "../pages/dashboard/track parcel/TrackParcel.jsx";
+import BeARider from "../pages/dashboard/be a rider/BeARider.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -32,6 +33,12 @@ export const router = createBrowserRouter([
                 path: '/sendParcel',
                 element:<PrivateRoute>
                     <SendParcel />
+                </PrivateRoute>
+            },
+            {
+                path: '/beARider',
+                element:<PrivateRoute>
+                    <BeARider />
                 </PrivateRoute>
             }
 
