@@ -4,22 +4,34 @@ import {data, Link} from 'react-router';
 import useAuth from "../../../hooks/useAuth.jsx";
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from "axios";
+import useAxios from "../../../hooks/useAxios.jsx";
 
 const Register = () => {
     const [profilePic,setProfilePic]=useState('');
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useAuth();
     const [previewImage, setPreviewImage] = useState(null);
+    const axiosInstance = useAxios();
 
 
     const onSubmit = data => {
         console.log(data);
         createUser(data.email, data.password)
-            .then(result => {
+            .then(async (result) => {
                 console.log(result.user);
+                const userInfo = {
+                    email:data.email,
+                    role:"user",
+                    created_at : new Date().toISOString(),
+                    last_log_in:new Date().toISOString(),
+                }
+
+                const userRes=await axiosInstance.post('/user',userInfo)
+                console.log(userRes.data);
+
                 updateUserProfile({
                     displayName: data.name,
-                    photoURL: previewImage // or handle file upload
+                    photoURL: profilePic // or handle file upload
                 });
 
             })
@@ -38,13 +50,22 @@ const Register = () => {
             reader.readAsDataURL(image);
         }
 
-        const fromData = new FormData();
-        fromData.append('image',image);
+        const formData = new FormData();
+        formData.append('image',image);
         const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
 
-        const res = await axios.post(url,fromData);
-        setProfilePic(res.data.data.url);
-
+        try {
+            const res = await axios.post(url, formData);
+            if (res.data && res.data.success) {
+                setProfilePic(res.data.data.url);
+            } else {
+                console.error("Image upload failed", res.data);
+                alert("Image upload failed. Please try again.");
+            }
+        } catch (error) {
+            console.error("Error uploading image:", error);
+            alert("Failed to upload image. Check your connection or API key.");
+        }
 
     };
 
