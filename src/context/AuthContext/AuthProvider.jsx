@@ -30,8 +30,8 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     }
 
-    const updateUserProfile = profileinfo =>{
-        return updateProfile(auth.currentUser, profileinfo);
+    const updateUserProfile = profileInfo =>{
+        return updateProfile(auth.currentUser, profileInfo);
     }
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         signInWithGoogle,
-        updateProfile,
+        updateUserProfile,
         logOut,
     }
 

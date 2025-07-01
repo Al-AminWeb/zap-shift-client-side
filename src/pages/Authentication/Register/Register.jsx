@@ -3,11 +3,14 @@ import { useForm } from 'react-hook-form';
 import {data, Link} from 'react-router';
 import useAuth from "../../../hooks/useAuth.jsx";
 import SocialLogin from '../SocialLogin/SocialLogin';
+import axios from "axios";
 
 const Register = () => {
+    const [profilePic,setProfilePic]=useState('');
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useAuth();
     const [previewImage, setPreviewImage] = useState(null);
+
 
     const onSubmit = data => {
         console.log(data);
@@ -18,24 +21,31 @@ const Register = () => {
                     displayName: data.name,
                     photoURL: previewImage // or handle file upload
                 });
+
             })
             .catch(error => {
                 console.error(error);
             });
     };
 
-    const handleImageUpload = (e) => {
+    const handleImageUpload = async (e) => {
         const image = e.target.files[0];
-        if (file) {
+        if (image) {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setPreviewImage(reader.result);
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(image);
         }
 
         const fromData = new FormData();
         fromData.append('image',image);
+        const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
+
+        const res = await axios.post(url,fromData);
+        setProfilePic(res.data.data.url);
+
+
     };
 
     return (
