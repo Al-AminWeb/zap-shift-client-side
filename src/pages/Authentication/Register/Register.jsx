@@ -1,43 +1,59 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {data, Link} from 'react-router';
+import { Link, useNavigate, useLocation } from 'react-router';
 import useAuth from "../../../hooks/useAuth.jsx";
 import SocialLogin from '../SocialLogin/SocialLogin';
 import axios from "axios";
 import useAxios from "../../../hooks/useAxios.jsx";
+import Swal from 'sweetalert2';
 
 const Register = () => {
-    const [profilePic,setProfilePic]=useState('');
+    const [profilePic, setProfilePic] = useState('');
+    const [previewImage, setPreviewImage] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useAuth();
-    const [previewImage, setPreviewImage] = useState(null);
     const axiosInstance = useAxios();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
+    const onSubmit = async (data) => {
+        try {
+            const result = await createUser(data.email, data.password);
 
-    const onSubmit = data => {
-        console.log(data);
-        createUser(data.email, data.password)
-            .then(async (result) => {
-                console.log(result.user);
-                const userInfo = {
-                    email:data.email,
-                    role:"user",
-                    created_at : new Date().toISOString(),
-                    last_log_in:new Date().toISOString(),
-                }
+            const userInfo = {
+                email: data.email,
+                role: "user",
+                created_at: new Date().toISOString(),
+                last_log_in: new Date().toISOString(),
+            };
 
-                const userRes=await axiosInstance.post('/user',userInfo)
-                console.log(userRes.data);
+            await axiosInstance.post('/user', userInfo);
 
-                updateUserProfile({
-                    displayName: data.name,
-                    photoURL: profilePic // or handle file upload
-                });
-
-            })
-            .catch(error => {
-                console.error(error);
+            await updateUserProfile({
+                displayName: data.name,
+                photoURL: profilePic
             });
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Registration Successful!',
+                text: 'Welcome to our platform!',
+                timer: 1500,
+                showConfirmButton: false,
+            });
+
+            setTimeout(() => {
+                navigate(from, { replace: true });
+            }, 1600);
+
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Registration Failed',
+                text: error.message,
+            });
+        }
     };
 
     const handleImageUpload = async (e) => {
@@ -51,8 +67,8 @@ const Register = () => {
         }
 
         const formData = new FormData();
-        formData.append('image',image);
-        const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
 
         try {
             const res = await axios.post(url, formData);
@@ -66,7 +82,6 @@ const Register = () => {
             console.error("Error uploading image:", error);
             alert("Failed to upload image. Check your connection or API key.");
         }
-
     };
 
     return (
