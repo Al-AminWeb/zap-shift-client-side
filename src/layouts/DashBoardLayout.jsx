@@ -75,6 +75,18 @@ const DashBoardLayout = () => {
                             Update Profile
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/dashboard/activeRiders">
+                            <HiUserCircle className="text-xl" />
+                            Active Riders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/pendingRiders">
+                            <HiUserCircle className="text-xl" />
+                            Pending Riders
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
         </div>
