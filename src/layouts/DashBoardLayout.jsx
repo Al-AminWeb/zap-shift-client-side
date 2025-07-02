@@ -77,16 +77,26 @@ const DashBoardLayout = () => {
                     </li>
                     <li>
                         <NavLink to="/dashboard/activeRiders">
-                            <HiUserCircle className="text-xl" />
+                            <HiUserCircle className="text-xl"/>
                             Active Riders
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to="/dashboard/pendingRiders">
-                            <HiUserCircle className="text-xl" />
+                            <HiUserCircle className="text-xl"/>
                             Pending Riders
                         </NavLink>
                     </li>
+                   <li>
+                       <NavLink
+                           to="/dashboard/makeAdmin"
+                           className={({isActive}) =>
+                               `flex items-center gap-2 p-2 rounded-lg ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                           }
+                       >
+                           <span>Make Admin</span>
+                       </NavLink>
+                   </li>
                 </ul>
             </div>
         </div>
