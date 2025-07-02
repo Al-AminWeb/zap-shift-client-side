@@ -21,8 +21,8 @@ const PendingRiders = () => {
 
     /* ── approve / reject mutation ────────────────────── */
     const mutation = useMutation({
-        mutationFn: async ({ id, status }) => {
-            await axiosSecure.patch(`/riders/${id}`, { status });
+        mutationFn: async ({ id, status, email }) => {
+            await axiosSecure.patch(`/riders/${id}/status`, { status, email });
         },
         onSuccess: (_, variables) => {
             toast.success(`Rider ${variables.status === 'approved' ? 'approved' : 'rejected'}`);
@@ -67,13 +67,13 @@ const PendingRiders = () => {
                             </button>
                             <button
                                 className="btn btn-sm btn-success"
-                                onClick={() => mutation.mutate({ id: r._id, status: 'approved' })}
+                                onClick={() => mutation.mutate({ id: r._id, status: 'approved',email: r.email })}
                             >
                                 Approve
                             </button>
                             <button
                                 className="btn btn-sm btn-error"
-                                onClick={() => mutation.mutate({ id: r._id, status: 'rejected' })}
+                                onClick={() => mutation.mutate({ id: r._id, status: 'rejected',email: r.email })}
                             >
                                 Reject
                             </button>
