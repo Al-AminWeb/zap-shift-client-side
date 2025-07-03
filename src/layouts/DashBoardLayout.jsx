@@ -8,8 +8,12 @@ import {
     HiOutlineSearchCircle,
     HiUserCircle
 } from 'react-icons/hi';
+import useUserRole from "../hooks/useUserRole.jsx";
 
 const DashBoardLayout = () => {
+
+    const {role,roleLoading}= useUserRole();
+    console.log(role);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle"/>
@@ -69,24 +73,28 @@ const DashBoardLayout = () => {
                             Track a Package
                         </NavLink>
                     </li>
-                    <li>
-                        <NavLink to="/dashboard/profile">
-                            <HiUserCircle className="text-xl"/>
-                            Update Profile
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/activeRiders">
-                            <HiUserCircle className="text-xl"/>
-                            Active Riders
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/dashboard/pendingRiders">
-                            <HiUserCircle className="text-xl"/>
-                            Pending Riders
-                        </NavLink>
-                    </li>
+                    { roleLoading  && role ==='admin'&&
+                        <>
+                            <li>
+                                <NavLink to="/dashboard/profile">
+                                    <HiUserCircle className="text-xl"/>
+                                    Update Profile
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/activeRiders">
+                                    <HiUserCircle className="text-xl"/>
+                                    Active Riders
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/pendingRiders">
+                                    <HiUserCircle className="text-xl"/>
+                                    Pending Riders
+                                </NavLink>
+                            </li>
+                        </>
+                    }
                    <li>
                        <NavLink
                            to="/dashboard/makeAdmin"
