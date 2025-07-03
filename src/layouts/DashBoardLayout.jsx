@@ -9,11 +9,13 @@ import {
     HiUserCircle
 } from 'react-icons/hi';
 import useUserRole from "../hooks/useUserRole.jsx";
+import {HiUserPlus} from "react-icons/hi2";
 
 const DashBoardLayout = () => {
 
     const {role,roleLoading}= useUserRole();
-    console.log(role);
+    // console.log("role:", role);
+    // console.log("roleLoading:", roleLoading);
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle"/>
@@ -79,15 +81,21 @@ const DashBoardLayout = () => {
                             Update Profile
                         </NavLink>
                     </li>
-                    { roleLoading  && role ==='admin'&&
+                    {!roleLoading && role === 'admin' &&
                         <>
-
+                            <li>
+                                <NavLink to="/dashboard/assign-rider">
+                                    <HiUserPlus className="text-xl" />
+                                    Assign Rider
+                                </NavLink>
+                            </li>
                             <li>
                                 <NavLink to="/dashboard/activeRiders">
                                     <HiUserCircle className="text-xl"/>
                                     Active Riders
                                 </NavLink>
                             </li>
+
                             <li>
                                 <NavLink to="/dashboard/pendingRiders">
                                     <HiUserCircle className="text-xl"/>
