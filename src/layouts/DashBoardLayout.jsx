@@ -73,14 +73,15 @@ const DashBoardLayout = () => {
                             Track a Package
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/dashboard/profile">
+                            <HiUserCircle className="text-xl"/>
+                            Update Profile
+                        </NavLink>
+                    </li>
                     { roleLoading  && role ==='admin'&&
                         <>
-                            <li>
-                                <NavLink to="/dashboard/profile">
-                                    <HiUserCircle className="text-xl"/>
-                                    Update Profile
-                                </NavLink>
-                            </li>
+
                             <li>
                                 <NavLink to="/dashboard/activeRiders">
                                     <HiUserCircle className="text-xl"/>
@@ -93,18 +94,19 @@ const DashBoardLayout = () => {
                                     Pending Riders
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/makeAdmin"
+                                    className={({isActive}) =>
+                                        `flex items-center gap-2 p-2 rounded-lg ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
+                                    }
+                                >
+                                    <span>Make Admin</span>
+                                </NavLink>
+                            </li>
                         </>
                     }
-                   <li>
-                       <NavLink
-                           to="/dashboard/makeAdmin"
-                           className={({isActive}) =>
-                               `flex items-center gap-2 p-2 rounded-lg ${isActive ? 'bg-primary text-white' : 'hover:bg-base-200'}`
-                           }
-                       >
-                           <span>Make Admin</span>
-                       </NavLink>
-                   </li>
+
                 </ul>
             </div>
         </div>

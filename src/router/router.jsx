@@ -18,6 +18,8 @@ import BeARider from "../pages/dashboard/be a rider/BeARider.jsx";
 import PendingRiders from "../pages/dashboard/pending riders/PendingRiders.jsx";
 import ActiveRider from "../pages/dashboard/active riders/ActiveRider.jsx";
 import MakeAdmin from "../pages/dashboard/make admin/MakeAdmin.jsx";
+import Forbidden from "../pages/forbidden/Forbidden.jsx";
+import AdminRoute from "../routes/AdminRoute.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -58,6 +60,10 @@ export const router = createBrowserRouter([
         {
             path:'/register',
             Component:Register,
+        },
+        {
+            path: 'forbidden',
+            Component:Forbidden,
         }
     ]
     },
@@ -85,15 +91,21 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'pendingRiders',
-                Component:PendingRiders
+                element: <AdminRoute>
+                  <PendingRiders />
+                </AdminRoute>
             },
             {
                 path:'activeRiders',
-                Component:ActiveRider
+                element: <AdminRoute>
+                    <ActiveRider />
+                </AdminRoute>
             },
             {
                 path:'makeAdmin',
-                Component:MakeAdmin
+                element: <AdminRoute>
+                    <MakeAdmin />
+                </AdminRoute>
             }
         ]
     }
