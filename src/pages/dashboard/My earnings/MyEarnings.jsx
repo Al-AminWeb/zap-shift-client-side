@@ -30,7 +30,7 @@ const MyEarnings = () => {
     const earnings = parcels.map(parcel => ({
         ...parcel,
         earning: calculateEarning(parcel),
-        deliveredAt: new Date(parcel.delivered_at).getTime(),
+        deliveredAt: new Date(parcel.deliveredAt).getTime(),
     }));
 
     const totalEarning = earnings.reduce((sum, p) => sum + p.earning, 0);
