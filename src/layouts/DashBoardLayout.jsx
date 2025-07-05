@@ -6,14 +6,14 @@ import {
     HiOutlineCube,
     HiCreditCard,
     HiOutlineSearchCircle,
-    HiUserCircle
+    HiUserCircle, HiClipboardList
 } from 'react-icons/hi';
 import useUserRole from "../hooks/useUserRole.jsx";
 import {HiUserPlus} from "react-icons/hi2";
 
 const DashBoardLayout = () => {
 
-    const {role,roleLoading}= useUserRole();
+    const {role, roleLoading} = useUserRole();
     // console.log("role:", role);
     // console.log("roleLoading:", roleLoading);
     return (
@@ -53,12 +53,12 @@ const DashBoardLayout = () => {
                     <li>
                         <NavLink
                             to="/dashboard"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                  ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                             }
                         >
-                            <HiHome className="text-xl" />
+                            <HiHome className="text-xl"/>
                             Dashboard Home
                         </NavLink>
                     </li>
@@ -66,12 +66,12 @@ const DashBoardLayout = () => {
                     <li>
                         <NavLink
                             to="/dashboard/myParcels"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                  ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                             }
                         >
-                            <HiOutlineCube className="text-xl" />
+                            <HiOutlineCube className="text-xl"/>
                             My Parcels
                         </NavLink>
                     </li>
@@ -79,12 +79,12 @@ const DashBoardLayout = () => {
                     <li>
                         <NavLink
                             to="/dashboard/paymentHistory"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                  ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                             }
                         >
-                            <HiCreditCard className="text-xl" />
+                            <HiCreditCard className="text-xl"/>
                             Payment History
                         </NavLink>
                     </li>
@@ -92,12 +92,12 @@ const DashBoardLayout = () => {
                     <li>
                         <NavLink
                             to="/dashboard/track"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                  ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                             }
                         >
-                            <HiOutlineSearchCircle className="text-xl" />
+                            <HiOutlineSearchCircle className="text-xl"/>
                             Track a Package
                         </NavLink>
                     </li>
@@ -105,15 +105,32 @@ const DashBoardLayout = () => {
                     <li>
                         <NavLink
                             to="/dashboard/profile"
-                            className={({ isActive }) =>
+                            className={({isActive}) =>
                                 `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                  ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                             }
                         >
-                            <HiUserCircle className="text-xl" />
+                            <HiUserCircle className="text-xl"/>
                             Update Profile
                         </NavLink>
                     </li>
+                    {!roleLoading && role === 'rider' &&
+                        <>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/pending-deliveries"
+                                    className={({isActive}) =>
+                                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
+       ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
+                                    }
+                                >
+                                    <HiClipboardList className="text-xl"/>
+                                    Pending Deliveries
+                                </NavLink>
+                            </li>
+
+                        </>
+                    }
 
                     {/* Admin-only routes */}
                     {!roleLoading && role === 'admin' && (
@@ -121,12 +138,12 @@ const DashBoardLayout = () => {
                             <li>
                                 <NavLink
                                     to="/dashboard/assign-rider"
-                                    className={({ isActive }) =>
+                                    className={({isActive}) =>
                                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                          ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                                     }
                                 >
-                                    <HiUserPlus className="text-xl" />
+                                    <HiUserPlus className="text-xl"/>
                                     Assign Rider
                                 </NavLink>
                             </li>
@@ -134,12 +151,12 @@ const DashBoardLayout = () => {
                             <li>
                                 <NavLink
                                     to="/dashboard/activeRiders"
-                                    className={({ isActive }) =>
+                                    className={({isActive}) =>
                                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                          ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                                     }
                                 >
-                                    <HiUserCircle className="text-xl" />
+                                    <HiUserCircle className="text-xl"/>
                                     Active Riders
                                 </NavLink>
                             </li>
@@ -147,12 +164,12 @@ const DashBoardLayout = () => {
                             <li>
                                 <NavLink
                                     to="/dashboard/pendingRiders"
-                                    className={({ isActive }) =>
+                                    className={({isActive}) =>
                                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                          ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                                     }
                                 >
-                                    <HiUserCircle className="text-xl" />
+                                    <HiUserCircle className="text-xl"/>
                                     Pending Riders
                                 </NavLink>
                             </li>
@@ -160,12 +177,12 @@ const DashBoardLayout = () => {
                             <li>
                                 <NavLink
                                     to="/dashboard/makeAdmin"
-                                    className={({ isActive }) =>
+                                    className={({isActive}) =>
                                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
                          ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                                     }
                                 >
-                                    <HiUserCircle className="text-xl" />
+                                    <HiUserCircle className="text-xl"/>
                                     Make Admin
                                 </NavLink>
                             </li>
