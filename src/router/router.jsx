@@ -23,6 +23,7 @@ import AdminRoute from "../routes/AdminRoute.jsx";
 import AssignRider from "../pages/dashboard/assign rider/AssignRider.jsx";
 import RiderRoute from "../routes/RiderRoute.jsx";
 import PendingDeliveries from "../pages/dashboard/Pending delivery/PendingDeliveries.jsx";
+import CompletedDeliveries from "../pages/dashboard/completed deliveries/CompletedDeliveries.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -97,6 +98,12 @@ export const router = createBrowserRouter([
                path: 'pending-deliveries',
                 element: <RiderRoute>
                     <PendingDeliveries/>
+                </RiderRoute>
+            },
+            {
+                path:'completed-deliveries',
+                element: <RiderRoute>
+                  <CompletedDeliveries/>
                 </RiderRoute>
             },
             {

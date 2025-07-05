@@ -6,7 +6,7 @@ import {
     HiOutlineCube,
     HiCreditCard,
     HiOutlineSearchCircle,
-    HiUserCircle, HiClipboardList
+    HiUserCircle, HiClipboardList, HiCheckCircle
 } from 'react-icons/hi';
 import useUserRole from "../hooks/useUserRole.jsx";
 import {HiUserPlus} from "react-icons/hi2";
@@ -126,6 +126,18 @@ const DashBoardLayout = () => {
                                 >
                                     <HiClipboardList className="text-xl"/>
                                     Pending Deliveries
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/completed-deliveries"
+                                    className={({ isActive }) =>
+                                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
+       ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
+                                    }
+                                >
+                                    <HiCheckCircle className="text-xl" />
+                                    Completed Deliveries
                                 </NavLink>
                             </li>
 
