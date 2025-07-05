@@ -6,7 +6,7 @@ import {
     HiOutlineCube,
     HiCreditCard,
     HiOutlineSearchCircle,
-    HiUserCircle, HiClipboardList, HiCheckCircle
+    HiUserCircle, HiClipboardList, HiCheckCircle, HiCurrencyBangladeshi
 } from 'react-icons/hi';
 import useUserRole from "../hooks/useUserRole.jsx";
 import {HiUserPlus} from "react-icons/hi2";
@@ -118,12 +118,7 @@ const DashBoardLayout = () => {
                         <>
                             <li>
                                 <NavLink
-                                    to="/dashboard/pending-deliveries"
-                                    className={({isActive}) =>
-                                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
-       ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
-                                    }
-                                >
+                                    to="/dashboard/pending-deliveries" className={({isActive}) => `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200 ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`}>
                                     <HiClipboardList className="text-xl"/>
                                     Pending Deliveries
                                 </NavLink>
@@ -131,15 +126,28 @@ const DashBoardLayout = () => {
                             <li>
                                 <NavLink
                                     to="/dashboard/completed-deliveries"
-                                    className={({ isActive }) =>
+                                    className={({isActive}) =>
                                         `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
        ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
                                     }
                                 >
-                                    <HiCheckCircle className="text-xl" />
+                                    <HiCheckCircle className="text-xl"/>
                                     Completed Deliveries
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/earnings"
+                                    className={({ isActive }) =>
+                                        `flex items-center gap-3 px-4 py-2 rounded-lg transition-all duration-200
+            ${isActive ? 'bg-primary text-white' : 'hover:bg-base-300'}`
+                                    }
+                                >
+                                    <HiCurrencyBangladeshi className="text-xl" />
+                                    Earnings
+                                </NavLink>
+                            </li>
+
 
                         </>
                     }
